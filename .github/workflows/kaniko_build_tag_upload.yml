@@ -1,0 +1,16 @@
+name: Docker Image CI
+
+on: [push]
+
+jobs:
+
+  build:
+ 
+    runs-on: gcr.io/kaniko-project/executor:debug
+ 
+    steps:
+    - uses: actions/checkout@v1
+    - name: TODO: set up registry access via secrets(?) in /kaniko/.docker/config.json
+      run: echo "{\"auths\":{\"$CI_REGISTRY\":{\"username\":\"$CI_REGISTRY_USER\",\"password\":\"$CI_REGISTRY_PASSWORD\"}}}" > /kaniko/.docker/config.json
+    - name: Build the Docker image with kaniko, TODO: get tag from latest tag
+      run: /kaniko/executor , --context . --dockerfile Dockerfile --destination $CI_REGISTRY_IMAGE:$CI_COMMIT_TAG-$(date +%s)

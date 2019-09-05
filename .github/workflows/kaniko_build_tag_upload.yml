@@ -1,6 +1,6 @@
-name: Docker Image CI
+name: Kaniko: Build Docker Image and Upload to Registry on tag (github release)
 
-on: [push]
+on: [release]
 
 jobs:
 
